@@ -1,6 +1,6 @@
-/data/input
-/data/output
-/src/wandb
-/src/lightning_logs
-*.ipynb_checkpoints
-*__pycache__
+/data/input/
+/data/output/
+/src/wandb/
+/src/lightning_logs/
+*.ipynb_checkpoints/
+*__pycache__/
