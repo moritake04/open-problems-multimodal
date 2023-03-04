@@ -1,0 +1,73 @@
+general:
+  project_name: open-problems-multimodal
+  seed: &seed 1
+  cv: donor
+  wandb_desabled: false
+  # fold: [0, 1, 2, 3, 4] # list (0-idx start) or null. set one element list, hold-out mode.
+  # n_splits: 5
+  save_name: cite/mlp_1dcnn_dayss_ambrosm_seed1
+
+task: cite
+data_type: svd_important_ambrosm
+svd_dim: 64
+day_std_inputs: true
+day_donor_std_inputs: false
+day_std_targets: false
+use_meta: null
+gender: false
+
+model: cnn
+dropout: 0.0
+batchnorm: true
+
+model_save: &model_save true
+
+pl_params:
+  max_epochs: &max_epochs 5
+  accelerator: auto
+  accumulate_grad_batches: 1
+  precision: 32 # 16 or 32
+  deterministic: false
+  benchmark: false
+  enable_checkpointing: *model_save
+  enable_model_summary: false
+  enable_progress_bar: true
+  check_val_every_n_epoch: 5
+  #limit_train_batches: 0.1 # for debug
+  #limit_val_batches: 0.1 # for debug
+
+early_stopping: null
+#  patience: 10
+
+criterion: correl_loss #MSELoss
+optimizer:
+  name: AdamW
+  params:
+    lr: 1.0e-2
+    weight_decay: 1.0e-2
+scheduler:
+  name: OneCycleLR
+  params:
+    pct_start: 0.1
+    div_factor: 1.0e+3
+    max_lr: 1.0e-2
+    epochs: 5
+
+train_loader:
+  batch_size: 256
+  shuffle: true
+  num_workers: 2
+  pin_memory: true
+  drop_last: true
+valid_loader:
+  batch_size: 1024
+  shuffle: false
+  num_workers: 2
+  pin_memory: true
+  drop_last: false
+test_loader:
+  batch_size: 1024
+  shuffle: false
+  num_workers: 2
+  pin_memory: true
+  drop_last: false

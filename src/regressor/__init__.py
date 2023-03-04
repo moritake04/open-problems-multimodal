@@ -1,0 +1,8 @@
+from regressor.catboost_regressor import CatBoostRegressor, CatBoostRegressorInference
+from regressor.kernel_ridge_rbf_regressor import KernelRidgeRBFRegressor
+from regressor.lightgbm_regressor import LightGBMRegressor, LightGBMRegressorInference
+from regressor.mlp_regressor import MLPRegressor, MLPRegressorInference
+from regressor.mlp_regressor_large import MLPLargeRegressor, MLPLargeRegressorInference
+from regressor.onedcnn_regressor import OneDCNNRegressor, OneDCNNRegressorInference
+from regressor.ridge_regressor import RidgeRegressor, RidgeRegressorInference
+from regressor.xgboost_regressor import XGBoostRegressor, XGBoostRegressorInference

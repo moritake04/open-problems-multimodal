@@ -1,0 +1,25 @@
+general:
+  project_name: open-problems-multimodal
+  seed: &seed 2
+  cv: donor
+  wandb_desabled: false
+  # fold: [0, 1, 2, 3, 4] # list (0-idx start) or null. set one element list, hold-out mode.
+  # n_splits: 5
+  save_name: cite/lightgbm_corr_100_dayss_fraction_seed2
+
+task: cite
+data_type: corr_100
+svd_dim: 64
+day_std_inputs: true
+day_donor_std_inputs: false
+day_std_targets: false
+use_meta: null
+gender: false
+
+model: lgbm
+lgbm_params:
+  n_estimators: 100
+  feature_fraction: 0.5
+  random_state: *seed
+
+model_save: true
